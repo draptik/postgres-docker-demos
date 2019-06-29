@@ -1,5 +1,5 @@
-# Creating different kinds of Docker images with Postgres
-
+# Creating different kinds of Docker Postgres images
+    
 ## Demo1: DVD Rental sample database
 
 Create a docker container with Postgres and demo database "DVD Rental".
