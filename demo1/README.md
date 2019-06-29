@@ -8,9 +8,17 @@ The following command creates a docker image with postgres and adds the DVD Rent
 ./docker-build.sh && ./docker-run.sh
 ```
 
-URL: `localhost`
-Port: `5432`
-Username & password: `postgres`
+- URL: `localhost`
+- Port: `5432`
+- Username & password: `postgres`
+
+## TODO
+
+Figure out how to provide this postgres docker container for dedicated postgres user `demouser` with password `demopw`.
+
+Ideally using `docker-compose` like in [`demo2`](../demo2/README.md): Less ceremony, easier.
+
+My failed attempts are commented in [`create_db.sh`](create_db.sh).
 
 ## Create docker image
 
