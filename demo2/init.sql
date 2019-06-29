@@ -1,0 +1,3 @@
+CREATE DATABASE "demo2";
+CREATE USER demouser WITH PASSWORD 'demopw';
+GRANT ALL PRIVILEGES ON DATABASE "demo2" to demouser;
