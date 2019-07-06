@@ -23,7 +23,7 @@ My failed attempts are commented in [`create_db.sh`](create_db.sh).
 ## Create docker image
 
 This demo uses a `Dockerfile` to create and populate the database. It requires the database content downloaded from:
-http://www.postgresqltutorial.com/postgresql-sample-database/
+[http://www.postgresqltutorial.com/postgresql-sample-database/](http://www.postgresqltutorial.com/postgresql-sample-database/)
 
 The file `dvdrental.tar` should be located in the folder `sample-data`.
 
