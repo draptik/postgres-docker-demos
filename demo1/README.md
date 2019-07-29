@@ -12,13 +12,32 @@ The following command creates a docker image with postgres and adds the DVD Rent
 - Port: `5432`
 - Username & password: `postgres`
 
-## TODO
+View with
 
-Figure out how to provide this postgres docker container for dedicated postgres user `demouser` with password `demopw`.
+- pgAdmin: `http://127.0.0.1:39007/browser/`
 
-Ideally using `docker-compose` like in [`demo2`](../demo2/README.md): Less ceremony, easier.
+## Goal
 
-My failed attempts are commented in [`create_db.sh`](create_db.sh).
+Self-contained docker container:
+
+- postgres
+- dvd-rental demo
+- default postgres user and pw
+
+## Configuration overview
+
+- `docker-build.sh`
+  - `Dockerfile`
+    - copies sample-data into docker container
+    - executes `create-db.sh`:
+      - create database
+      - import data from tar file into newly created database
+- `docker-run.sh`: convenience wrapper around `docker run ...`
+
+Not included:
+
+- changing postres user/pw
+- using docker mounts or volumes (the db data is in the docker container and bound to its livecycle)
 
 ## Create docker image
 
@@ -64,7 +83,7 @@ docker build -t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION} .
 
 This will create 3 images:
 
-```
+```text
 docker images -a
 REPOSITORY                    TAG                 IMAGE ID            CREATED             SIZE
 postgres-with-dvd-rental-db   1.0                 f9d74f0900f2        About an hour ago   315MB
@@ -82,21 +101,18 @@ File: `docker-run.sh`
 INTERNAL_DOCKER_PORT=5432
 EXTERNAL_DOCKER_PORT=5432
 DOCKER_REMOVE_CONTAINER_AFTER_EXIT="--rm"
-# DOCKER_REMOVE_CONTAINER_AFTER_EXIT=""
 
 DOCKER_CONTAINER_NAME="postgres-dvd-rental"
 DOCKER_IMAGE_NAME="postgres-with-dvd-rental-db:1.0"
-DOCKER_ADDITIONAL_CMD=""
 ## ========================================
 
 ## ========================================
-## Setup 
+## Setup
 COMMAND="docker run \
     ${DOCKER_REMOVE_CONTAINER_AFTER_EXIT} \
     -p ${INTERNAL_DOCKER_PORT}:${EXTERNAL_DOCKER_PORT} \
     --name ${DOCKER_CONTAINER_NAME} \
-    ${DOCKER_IMAGE_NAME} \
-    ${DOCKER_ADDITIONAL_CMD}"
+    ${DOCKER_IMAGE_NAME}"
 ## ========================================
 
 echo $COMMAND
@@ -107,4 +123,4 @@ eval $COMMAND
 
 ## Idea
 
-https://github.com/tadaken3/postgres-dvdrental-database-dockerfiles
+- [https://github.com/tadaken3/postgres-dvdrental-database-dockerfiles](https://github.com/tadaken3/postgres-dvdrental-database-dockerfiles)
