@@ -1,0 +1,6 @@
+version: "3.5"
+
+services:
+  postres:
+    image: postgres:11.4
+    container_name: postgres-with-dvdrental-demo3

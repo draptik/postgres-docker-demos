@@ -39,7 +39,3 @@ services:
     volumes:
     - ./init.sql:/docker-entrypoint-initdb.d/init.sql
 ```
-
-## Idea
-
-[https://github.com/PacktPublishing/Hands-On-Domain-Driven-Design-with-.NET-Core/blob/master/Chapter09/ef-core/docker-compose.yml](https://github.com/PacktPublishing/Hands-On-Domain-Driven-Design-with-.NET-Core/blob/master/Chapter09/ef-core/docker-compose.yml)
